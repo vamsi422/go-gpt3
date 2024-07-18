@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -17,8 +16,8 @@ const (
 	TextAda001Engine     = "text-ada-001"
 	TextBabbage001Engine = "text-babbage-001"
 	TextCurie001Engine   = "text-curie-001"
-	TextDavinci001Engine = "text-davinci-001"
-	TextDavinci002Engine = "text-davinci-002"
+	TextDavinci001Engine = "text-davinci-003"
+	TextDavinci002Engine = "text-davinci-003"
 	TextDavinci003Engine = "text-davinci-003"
 	AdaEngine            = "ada"
 	BabbageEngine        = "babbage"
@@ -433,7 +432,7 @@ func checkForSuccess(resp *http.Response) error {
 		return nil
 	}
 	defer resp.Body.Close()
-	data, err := ioutil.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return fmt.Errorf("failed to read from body: %w", err)
 	}
